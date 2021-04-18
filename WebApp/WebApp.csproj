@@ -1,0 +1,82 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <UserSecretsId>aspnet-WebApp-8C0D6748-EFF4-496E-9669-A9BAAE032581</UserSecretsId>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DAL.App.EF\DAL.App.EF.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\GasStation\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\GasStation\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\GasStation\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\GasStation\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\GasStation\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ContactType\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ContactType\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ContactType\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ContactType\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ContactType\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\FuelTypeInGasStation\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\FuelTypeInGasStation\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\FuelTypeInGasStation\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\FuelTypeInGasStation\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\FuelTypeInGasStation\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ServiceInGasStation\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ServiceInGasStation\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ServiceInGasStation\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ServiceInGasStation\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ServiceInGasStation\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CustomerCard\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CustomerCard\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CustomerCard\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CustomerCard\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\CustomerCard\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Service\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Service\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Service\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Service\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Service\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Contact\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Contact\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Contact\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Contact\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Contact\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\FuelType\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\FuelType\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\FuelType\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\FuelType\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\FuelType\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Retailer\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Retailer\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Retailer\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Retailer\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Retailer\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCustomerCard\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCustomerCard\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCustomerCard\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCustomerCard\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCustomerCard\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCustomerCards\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCustomerCards\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCustomerCards\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCustomerCards\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCustomerCards\Index.cshtml" />
+    </ItemGroup>
+
+</Project>

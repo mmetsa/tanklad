@@ -29,5 +29,9 @@ namespace WebApp.Areas.Admin.ViewModels
         [DisplayName("User Roles")]
         public List<SelectListItem>? UserRoles { get; set; }
         public string? SelectedRole { get; set; }
+        
+        public List<SelectListItem>? AllRoles { get; set; }
+        
+        public string? NewRole { get; set; }
     }
 }

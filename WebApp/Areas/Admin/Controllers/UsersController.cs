@@ -19,10 +19,12 @@ namespace WebApp.Areas.Admin.Controllers
     public class UsersController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
 
-        public UsersController(UserManager<AppUser> userManager)
+        public UsersController(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         // GET: Users
@@ -102,6 +104,26 @@ namespace WebApp.Areas.Admin.Controllers
 
             return RedirectToAction("Edit", new {id});
         }
+        
+        public async Task<IActionResult> AddRole(Guid? id, UsersViewModel vm)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var appUser = await _userManager.Users.FirstOrDefaultAsync(m => m.Id == id);
+            if (appUser == null)
+            {
+                return NotFound();
+            }
+
+            if (vm.NewRole != null)
+            {
+                await _userManager.AddToRoleAsync(appUser, vm.NewRole);
+            }
+
+            return RedirectToAction("Edit", new {id});
+        }
 
         // GET: Roles/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
@@ -123,10 +145,16 @@ namespace WebApp.Areas.Admin.Controllers
             vm.Email = appUser.Email;
             vm.Password = string.Empty;
             var roles = _userManager.GetRolesAsync(appUser).Result.ToList();
+            var allRoles = await _roleManager.Roles.ToListAsync();
             vm.UserRoles = new List<SelectListItem>();
+            vm.AllRoles = new List<SelectListItem>();
             roles.ForEach(role =>
             {
                 vm.UserRoles.Add(new SelectListItem(role, role));
+            });
+            allRoles.ForEach(role =>
+            {
+                vm.AllRoles.Add(new SelectListItem(role.Name, role.Name));
             });
             return View(vm);
         }

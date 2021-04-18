@@ -59,7 +59,7 @@ namespace DAL.App.EF.AppDataInit
 
                 foreach (var role in roles)
                 {
-                    result = userManager.AddToRoleAsync(user, role.Value).Result;
+                    result = userManager.AddToRoleAsync(userManager.FindByEmailAsync(email).Result, role.Value).Result;
             
                     if (!result.Succeeded)
                     {

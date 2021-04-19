@@ -9,8 +9,14 @@ namespace Domain.App.Identity
     {
         [StringLength(128, MinimumLength = 1)]
         public string Firstname { get; set; } = default!;
+        
         [StringLength(128, MinimumLength = 1)]
         public string Lastname { get; set; } = default!;
+        
         public ICollection<CustomerCard>? CustomerCards { get; set; }
+        
+        public ICollection<FavoriteGasStation>? FavoriteGasStations { get; set; }
+        
+        public ICollection<FavoriteRetailer>? FavoriteRetailers { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Domain.App.Identity;
 using Domain.Base;
 
 namespace Domain.App
@@ -9,6 +10,8 @@ namespace Domain.App
         public Guid GasStationId { get; set; }
         public GasStation? GasStation { get; set; }
         
-        //Todo - add user connection
+        public Guid AppUserId { get; set; }
+        
+        public AppUser? AppUser { get; set; }
     }
 }

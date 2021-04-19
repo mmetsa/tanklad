@@ -17,8 +17,11 @@ namespace Domain.App
         public string? Address { get; set; }
 
         public ICollection<CustomerCard>? CustomerCards { get; set; }
+        
         public ICollection<Contact>? Contacts { get; set; }
+        
         public ICollection<FavoriteRetailer>? FavoriteRetailers { get; set; }
+        
         public ICollection<GasStation>? GasStations { get; set; }
     }
 }

@@ -23,8 +23,11 @@ namespace Domain.App
         public Retailer? Retailer { get; set; }
         
         public ICollection<ServiceInGasStation>? ServicesInGasStations { get; set; }
+        
         public ICollection<FuelTypeInGasStation>? FuelTypesInGasStation { get; set; }
+        
         public ICollection<Contact>? Contacts { get; set; }
+        
         public ICollection<FavoriteGasStation>? FavoriteGasStations { get; set; }
         
     }

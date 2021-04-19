@@ -1,0 +1,19 @@
+@model WebApp.ViewModels.ContactCEViewModel
+
+<div class="form-group">
+    <label asp-for="Contact.Name" class="control-label"></label>
+    <input asp-for="Contact.Name" class="form-control" />
+    <span asp-validation-for="Contact.Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Contact.ContactTypeId" class="control-label"></label>
+    <select asp-for="Contact.ContactTypeId" class ="form-control" asp-items="Model.ContactTypeSelectList"></select>
+</div>
+<div class="form-group">
+    <label asp-for="Contact.RetailerId" class="control-label"></label>
+    <select asp-for="Contact.RetailerId" class ="form-control" asp-items="Model.RetailerSelectList"></select>
+</div>
+<div class="form-group">
+    <label asp-for="Contact.GasStationId" class="control-label"></label>
+    <select asp-for="Contact.GasStationId" class ="form-control" asp-items="Model.GasStationSelectList"></select>
+</div>

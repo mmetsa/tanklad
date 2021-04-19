@@ -10,7 +10,7 @@ using DAL.App.EF;
 using DAL.App.EF.Repositories;
 using Domain.App;
 using Microsoft.AspNetCore.Authorization;
-using WebApp.Controllers.Helpers;
+using WebApp.ViewModels;
 
 namespace WebApp.Controllers
 {
@@ -51,10 +51,11 @@ namespace WebApp.Controllers
         // GET: Contacts/Create
         public async Task<IActionResult> Create()
         {
-            ViewData["ContactTypeId"] = new SelectList(await _uow.ContactTypes.GetAllAsync(), "Id", "Name");
-            ViewData["GasStationId"] = new SelectList(await _uow.GasStations.GetAllAsync(), "Id", "Name");
-            ViewData["RetailerId"] = new SelectList(await _uow.Retailers.GetAllAsync(), "Id", "Name");
-            return View();
+            var vm = new ContactCEViewModel();
+            vm.ContactTypeSelectList = new SelectList(await _uow.ContactTypes.GetAllAsync(), "Id", "Name");
+            vm.GasStationSelectList = new SelectList(await _uow.GasStations.GetAllAsync(), "Id", "Name");
+            vm.RetailerSelectList = new SelectList(await _uow.Retailers.GetAllAsync(), "Id", "Name");
+            return View(vm);
         }
 
         // POST: Contacts/Create
@@ -62,19 +63,20 @@ namespace WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create( Contact contact)
+        public async Task<IActionResult> Create( ContactCEViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                contact.Id = Guid.NewGuid();
-                _uow.Contacts.Add(contact);
+                vm.Contact.Id = Guid.NewGuid();
+                _uow.Contacts.Add(vm.Contact);
                 await _uow.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ContactTypeId"] = new SelectList(await _uow.ContactTypes.GetAllAsync(), "Id", "Name", contact.ContactTypeId);
-            ViewData["GasStationId"] = new SelectList(await _uow.GasStations.GetAllAsync(), "Id", "Name", contact.GasStationId);
-            ViewData["RetailerId"] = new SelectList(await _uow.Retailers.GetAllAsync(), "Id", "Name", contact.RetailerId);
-            return View(contact);
+            
+            vm.ContactTypeSelectList = new SelectList(await _uow.ContactTypes.GetAllAsync(), nameof(ContactType.Id), nameof(ContactType.Name), vm.Contact.ContactTypeId);
+            vm.GasStationSelectList = new SelectList(await _uow.GasStations.GetAllAsync(), nameof(GasStation.Id), nameof(GasStation.Name), vm.Contact.GasStationId);
+            vm.RetailerSelectList = new SelectList(await _uow.Retailers.GetAllAsync(), nameof(Retailer.Id), nameof(Retailer.Name), vm.Contact.RetailerId);
+            return View(vm);
         }
 
         // GET: Contacts/Edit/5
@@ -90,10 +92,12 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
-            ViewData["ContactTypeId"] = new SelectList(await _uow.ContactTypes.GetAllAsync(), "Id", "Name", contact.ContactTypeId);
-            ViewData["GasStationId"] = new SelectList(await _uow.GasStations.GetAllAsync(), "Id", "Name", contact.GasStationId);
-            ViewData["RetailerId"] = new SelectList(await _uow.Retailers.GetAllAsync(), "Id", "Name", contact.RetailerId);
-            return View(contact);
+            var vm = new ContactCEViewModel();
+            vm.Contact = contact;
+            vm.ContactTypeSelectList = new SelectList(await _uow.ContactTypes.GetAllAsync(), nameof(ContactType.Id), nameof(ContactType.Name), vm.Contact.ContactTypeId);
+            vm.GasStationSelectList = new SelectList(await _uow.GasStations.GetAllAsync(), nameof(GasStation.Id), nameof(GasStation.Name), vm.Contact.GasStationId);
+            vm.RetailerSelectList = new SelectList(await _uow.Retailers.GetAllAsync(), nameof(Retailer.Id), nameof(Retailer.Name), vm.Contact.RetailerId);
+            return View(vm);
         }
 
         // POST: Contacts/Edit/5
@@ -101,9 +105,9 @@ namespace WebApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Contact contact)
+        public async Task<IActionResult> Edit(Guid id, ContactCEViewModel vm)
         {
-            if (id != contact.Id)
+            if (id != vm.Contact.Id)
             {
                 return NotFound();
             }
@@ -112,12 +116,12 @@ namespace WebApp.Controllers
             {
                 try
                 {
-                    _uow.Contacts.Update(contact);
+                    _uow.Contacts.Update(vm.Contact);
                     await _uow.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    var exists = await ContactExists(contact.Id);
+                    var exists = await ContactExists(vm.Contact.Id);
                     if (!exists)
                     {
                         return NotFound();
@@ -126,10 +130,10 @@ namespace WebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ContactTypeId"] = new SelectList(await _uow.ContactTypes.GetAllAsync(), "Id", "Name", contact.ContactTypeId);
-            ViewData["GasStationId"] = new SelectList(await _uow.GasStations.GetAllAsync(), "Id", "Name", contact.GasStationId);
-            ViewData["RetailerId"] = new SelectList(await _uow.Retailers.GetAllAsync(), "Id", "Name", contact.RetailerId);
-            return View(contact);
+            vm.ContactTypeSelectList = new SelectList(await _uow.ContactTypes.GetAllAsync(), nameof(ContactType.Id), nameof(ContactType.Name), vm.Contact.ContactTypeId);
+            vm.GasStationSelectList = new SelectList(await _uow.GasStations.GetAllAsync(), nameof(GasStation.Id), nameof(GasStation.Name), vm.Contact.GasStationId);
+            vm.RetailerSelectList = new SelectList(await _uow.Retailers.GetAllAsync(), nameof(Retailer.Id), nameof(Retailer.Name), vm.Contact.RetailerId);
+            return View(vm);
         }
 
         // GET: Contacts/Delete/5

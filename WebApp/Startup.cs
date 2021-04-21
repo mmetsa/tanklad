@@ -72,6 +72,17 @@ namespace WebApp
                 .AddDefaultTokenProviders();
                 services.AddControllersWithViews();
             services.AddLocalization();
+            services.AddCors(options =>
+                {
+                    options.AddPolicy("CorsAllowAll", builder =>
+                    {
+                        builder.AllowAnyHeader();
+                        builder.AllowAnyMethod();
+                        builder.AllowAnyOrigin();
+                    });
+                }
+                
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,6 +104,7 @@ namespace WebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseCors("CorsAllowAll");
             app.UseRouting();
 
             app.UseAuthentication();
